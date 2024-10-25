@@ -1,7 +1,7 @@
 # Step-by-Step Guide to Implementing a Neural Network for MNIST on STM32H750
 
 This guide will walk you through the process of implementing, training, testing, and deploying a simple neural network for the MNIST dataset on the STM32H750 board. Here is a video of the working network: 
-![MNIST NN on STM32H750](https://youtu.be/fTuEm3o_KBk)
+[MNIST NN on STM32H750](https://youtu.be/fTuEm3o_KBk)
 
 
 ## Prerequisites
