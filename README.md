@@ -12,7 +12,8 @@ This guide will walk you through the process of implementing, training, testing,
 - STM32CubeProgrammer software for all STM32
 - STM32H750B-DK Discovery kit with STM32H750XB MCU
 
-## Link to PyTorch model on Google Colab: https://colab.research.google.com/drive/1iQkEjtpJQKhaohLlguWkb6Xao7NFnHPX?usp=sharing
+## Link to PyTorch model on Google Colab: 
+https://colab.research.google.com/drive/1iQkEjtpJQKhaohLlguWkb6Xao7NFnHPX?usp=sharing
 
 ## 1. Implementing the Neural Network in PyTorch
 
