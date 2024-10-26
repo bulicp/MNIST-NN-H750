@@ -1,0 +1,27 @@
+config load "C:/tmp/ioc_nXW9lh/STM32H750B-DK.ioc"
+project toolchain STM32CubeIDE
+
+pack enable STMicroelectronics X-CUBE-AI 9.1.0 "Artificial Intelligence" Core
+pack enable STMicroelectronics X-CUBE-AI 9.1.0 Device Application SystemPerformance
+pack validate
+AI set modes 2
+AI init bsp
+AI add model "network" "tflite" "C:\_AI_Projects\AI_as_a_Service\AIaaS\backend\project_service\templates\deepnet_relu.tflite"
+AI forcecopytype
+AI load requiredPreloadScript
+AI setboard STM32H750B-DK
+AI extflash "network" "External NOR Flash" 0x90000000 128
+AI extram "network" "External SDRAM" 0xD0000000 false
+AI bufferextram "network" 0xD0000000
+AI settings "network" splitweights
+AI extflashtensor "network" "gemm_0_bias_array"
+AI extflashtensor "network" "gemm_0_weights_array"
+AI extflashtensor "network" "gemm_1_bias_array"
+AI extflashtensor "network" "gemm_1_weights_array"
+AI extflashtensor "network" "gemm_2_bias_array"
+AI extflashtensor "network" "gemm_2_weights_array"
+project set heapsize 0x800
+project set stacksize 0x800
+AI save "network"
+project generate
+exit

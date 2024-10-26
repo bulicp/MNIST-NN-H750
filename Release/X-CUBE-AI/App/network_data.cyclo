@@ -1,0 +1,4 @@
+../X-CUBE-AI/App/network_data.c:57:11:ai_network_data_activations_buffer_get	1
+../X-CUBE-AI/App/network_data.c:75:11:ai_network_data_weights_buffer_get	1
+../X-CUBE-AI/App/network_data.c:93:11:ai_network_data_weights_get	1
+../X-CUBE-AI/App/network_data.c:106:9:ai_network_data_params_get	2

@@ -1,0 +1,13 @@
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:230:26:MX_QSPI_Init	0	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:328:9:BSP_QSPI_Read	16	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:367:9:BSP_QSPI_Write	40	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:437:9:BSP_QSPI_EraseBlock	16	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:476:9:BSP_QSPI_EraseChip	8	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:516:9:BSP_QSPI_GetStatus	16	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:552:9:BSP_QSPI_GetInfo	8	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:576:9:BSP_QSPI_EnableMemoryMappedMode	8	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:621:9:BSP_QSPI_DisableMemoryMappedMode	32	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:181:9:BSP_QSPI_DeInit	16	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:672:9:BSP_QSPI_ReadID	8	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:702:9:BSP_QSPI_ConfigFlash	24	static
+../Drivers/BSP/STM32H750B-DK/stm32h750b_discovery_qspi.c:96:9:BSP_QSPI_Init	176	static,ignoring_inline_asm

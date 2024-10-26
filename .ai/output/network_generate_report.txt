@@ -1,0 +1,222 @@
+ST Edge AI Core v1.0.0-19894
+Created date          : 2024-10-25 17:35:37
+Parameters            : generate --model mnist_model-2_PerChannel_quant_random_1.onnx --name network --workspace /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai --output /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output --split-weights --target stm32h7 --allocate-inputs --allocate-outputs --optimization balanced --memory-pool /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/mempools-board.json --memory-pool /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/mempools-board.json
+
+Exec/report summary (generate)
+--------------------------------------------------------------------------------------------------------------------------------------
+model file         :   /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/mnist_model-2_PerChannel_quant_random_1.onnx   
+type               :   onnx                                                                                                           
+c_name             :   network                                                                                                        
+compression        :   lossless                                                                                                       
+options            :   allocate-inputs, allocate-outputs, multi-heaps, split-weights                                                  
+optimization       :   balanced                                                                                                       
+target/series      :   stm32h7                                                                                                        
+memory pool        :   /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/mempools-board.json                        
+workspace dir      :   /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai                                            
+output dir         :   /tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output                                     
+model_fmt          :   ss/sa per channel                                                                                              
+model_name         :   mnist_model2_PerChannel_quant_random_1                                                                         
+model_hash         :   0xa5ac311aabe22d0f41c0f21b096c0ece                                                                             
+params #           :   109,386 items (427.29 KiB)                                                                                     
+--------------------------------------------------------------------------------------------------------------------------------------
+input 1/1          :   'input', int8(1x1x28x28), 784 Bytes, QLinear(0.003921163,-128,int8), activations                               
+output 1/1         :   'output_QuantizeLinear_Input', int8(1x10), 10 Bytes, QLinear(0.027057994,52,int8), activations                 
+macc               :   109,386                                                                                                        
+weights (ro)       :   109,992 B (107.41 KiB) (6 segments) / -327,552(-74.9%) vs float model                                          
+activations (rw)   :   3,760 B (3.67 KiB) (1 segment) *                                                                               
+ram (total)        :   3,760 B (3.67 KiB) = 3,760 + 0 + 0                                                                             
+--------------------------------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+ 
+ Memory-pools summary (activations/ domain)
+ ------------------------------------------- -------- ------------------------- --------- 
+ name                                        id       used                      buffer#   
+ ------------------------------------------- -------- ------------------------- --------- 
+ POOL_0_DTCMRAM                              0        3.67 KiB (3.0%)           7         
+ POOL_1_RAM_D1                               unused   -                         0         
+ POOL_2_RAM_D2                               unused   -                         0         
+ POOL_3_RAM_D3                               unused   -                         0         
+ POOL_EXTERNAL_SDRAM                         unused   -                         0         
+ _Relu_output_0_weights_array                5        98.00 KiB (10035200.0%)   1         
+ _Relu_output_0_bias_array                   6        512 B (51200.0%)          1         
+ _Relu_1_output_0_weights_array              7        8.00 KiB (819200.0%)      1         
+ _Relu_1_output_0_bias_array                 8        256 B (25600.0%)          1         
+ output_QuantizeLinear_Input_weights_array   9        640 B (64000.0%)          1         
+ output_QuantizeLinear_Input_bias_array      10       40 B (4000.0%)            1         
+ ------------------------------------------- -------- ------------------------- --------- 
+ Warning: ['POOL_1_RAM_D1', 'POOL_2_RAM_D2', 'POOL_3_RAM_D3', 'POOL_EXTERNAL_SDRAM'] memory pool s not used
+
+Model name - mnist_model2_PerChannel_quant_random_1
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+m_id   layer (type,original)                                                      oshape                param/size             macc                                connected to   | c_size              c_macc            c_type         
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+0      input (Input, )                                                            [b:1,h:1,w:28,c:28]                                                                             |                                       
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+1      fc1_bias_const (Placeholder, DequantizeLinear)                             [c:128]               128/512                                                                   | -512(-100.0%)                         
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+2      fc1_weight_DequantizeLinear_Output_const (Placeholder, DequantizeLinear)   [h:128,c:784]         100,352/401,408                                                           | -401,408(-100.0%)                     
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+3      fc2_bias_const (Placeholder, DequantizeLinear)                             [c:64]                64/256                                                                    | -256(-100.0%)                         
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+4      fc2_weight_DequantizeLinear_Output_const (Placeholder, DequantizeLinear)   [h:64,c:128]          8,192/32,768                                                              | -32,768(-100.0%)                      
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+5      fc3_bias_const (Placeholder, DequantizeLinear)                             [c:10]                10/40                                                                     | -40(-100.0%)                          
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+6      fc3_weight_DequantizeLinear_Output_const (Placeholder, DequantizeLinear)   [h:10,c:64]           640/2,560                                                                 | -2,560(-100.0%)                       
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+7      _Reshape_output_0 (Reshape, Reshape)                                       [b:1,c:784]                                                                             input   |                                       
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+8      _Reshape_output_0_QuantizeLinear_Output (Conversion, QuantizeLinear)       [b:1,c:784]                                 1,568                           _Reshape_output_0   |                     -1,568(-100.0%)   
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+9      _Reshape_output_0_DequantizeLinear_Output (Conversion, DequantizeLinear)   [b:1,c:784]                                 1,568     _Reshape_output_0_QuantizeLinear_Output   |                     -1,568(-100.0%)   
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+10     _Relu_output_0 (Gemm, Gemm)                                                [b:1,c:128]                               100,480   _Reshape_output_0_DequantizeLinear_Output   | +100,864(+100.0%)                     Dense_[0]      
+                                                                                                                                       fc1_weight_DequantizeLinear_Output_const   | 
+                                                                                                                                                                 fc1_bias_const   | 
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+11     _Relu_output_0_QuantizeLinear_Output (Conversion, QuantizeLinear)          [b:1,c:128]                                   256                              _Relu_output_0   |                     -256(-100.0%)     
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+12     _Relu_output_0_DequantizeLinear_Output (Conversion, DequantizeLinear)      [b:1,c:128]                                   256        _Relu_output_0_QuantizeLinear_Output   |                     -256(-100.0%)     
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+13     _Relu_1_output_0 (Gemm, Gemm)                                              [b:1,c:64]                                  8,256      _Relu_output_0_DequantizeLinear_Output   | +8,448(+100.0%)                       Dense_[1]      
+                                                                                                                                       fc2_weight_DequantizeLinear_Output_const   | 
+                                                                                                                                                                 fc2_bias_const   | 
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+14     _Relu_1_output_0_QuantizeLinear_Output (Conversion, QuantizeLinear)        [b:1,c:64]                                    128                            _Relu_1_output_0   |                     -128(-100.0%)     
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+15     _Relu_1_output_0_DequantizeLinear_Output (Conversion, DequantizeLinear)    [b:1,c:64]                                    128      _Relu_1_output_0_QuantizeLinear_Output   |                     -128(-100.0%)     
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+16     output_QuantizeLinear_Input (Gemm, Gemm)                                   [b:1,c:10]                                    650    _Relu_1_output_0_DequantizeLinear_Output   | +680(+100.0%)                         Dense_[o][2]   
+                                                                                                                                       fc3_weight_DequantizeLinear_Output_const   | 
+                                                                                                                                                                 fc3_bias_const   | 
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+17     output_QuantizeLinear_Output (Conversion, QuantizeLinear)                  [b:1,c:10]                                     20                 output_QuantizeLinear_Input   |                     -20(-100.0%)      
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+18     output (Conversion, DequantizeLinear)                                      [b:1,c:10]                                     20                output_QuantizeLinear_Output   |                     -20(-100.0%)      
+------ -------------------------------------------------------------------------- --------------------- ----------------- --------- ------------------------------------------- --- ------------------- ----------------- -------------- 
+model/c-model: macc=113,330/109,386 -3,944(-3.5%) weights=437,544/109,992 -327,552(-74.9%) activations=--/3,760 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : mnist_model2_PerChannel_quant_random_1
+c-name                : network
+c-node #              : 3
+c-array #             : 13
+activations size      : 3760 (1 segment)
+weights size          : 109992 (6 segments)
+macc                  : 109386
+inputs                : ['input_output']
+outputs               : ['output_QuantizeLinear_Input_output']
+
+C-Arrays (13)
+------ -------------------------------------- --------------- --------------------------------------------- ----------- --------- 
+c_id   name (*_array)                         item/size       domain/mem-pool                               c-type      comment   
+------ -------------------------------------- --------------- --------------------------------------------- ----------- --------- 
+0      _Relu_1_output_0_bias                  64/256          weights/_Relu_1_output_0_bias                 const s32             
+1      _Relu_1_output_0_output                64/64           activations/POOL_0_DTCMRAM                    s8                    
+2      _Relu_1_output_0_scratch0              448/896         activations/POOL_0_DTCMRAM                    s16                   
+3      _Relu_1_output_0_weights               8192/8192       weights/_Relu_1_output_0_weights              const s8              
+4      _Relu_output_0_bias                    128/512         weights/_Relu_output_0_bias                   const s32             
+5      _Relu_output_0_output                  128/128         activations/POOL_0_DTCMRAM                    s8                    
+6      _Relu_output_0_scratch0                1424/2848       activations/POOL_0_DTCMRAM                    s16                   
+7      _Relu_output_0_weights                 100352/100352   weights/_Relu_output_0_weights                const s8              
+8      input_output                           784/784         activations/POOL_0_DTCMRAM                    s8          /input    
+9      output_QuantizeLinear_Input_bias       10/40           weights/output_QuantizeLinear_Input_bias      const s32             
+10     output_QuantizeLinear_Input_output     10/10           activations/POOL_0_DTCMRAM                    s8          /output   
+11     output_QuantizeLinear_Input_scratch0   114/228         activations/POOL_0_DTCMRAM                    s16                   
+12     output_QuantizeLinear_Input_weights    640/640         weights/output_QuantizeLinear_Input_weights   const s8              
+------ -------------------------------------- --------------- --------------------------------------------- ----------- --------- 
+
+C-Layers (3)
+------ ----------------------------- ---- ------------ -------- -------- ----------------------------------------- --------------------- 
+c_id   name (*_layer)                id   layer_type   macc     rom      tensors                                   shape (array id)      
+------ ----------------------------- ---- ------------ -------- -------- ----------------------------------------- --------------------- 
+0      _Relu_output_0                10   Dense        100480   100864   I: input_output                           int8(1x1x28x28) (8)   
+                                                                         S: _Relu_output_0_scratch0                                      
+                                                                         W: _Relu_output_0_weights                 int8(128x784) (7)     
+                                                                         W: _Relu_output_0_bias                    int32(128) (4)        
+                                                                         O: _Relu_output_0_output                  int8(1x128) (5)       
+------ ----------------------------- ---- ------------ -------- -------- ----------------------------------------- --------------------- 
+1      _Relu_1_output_0              13   Dense        8256     8448     I: _Relu_output_0_output                  int8(1x128) (5)       
+                                                                         S: _Relu_1_output_0_scratch0                                    
+                                                                         W: _Relu_1_output_0_weights               int8(64x128) (3)      
+                                                                         W: _Relu_1_output_0_bias                  int32(64) (0)         
+                                                                         O: _Relu_1_output_0_output                int8(1x64) (1)        
+------ ----------------------------- ---- ------------ -------- -------- ----------------------------------------- --------------------- 
+2      output_QuantizeLinear_Input   16   Dense        650      680      I: _Relu_1_output_0_output                int8(1x64) (1)        
+                                                                         S: output_QuantizeLinear_Input_scratch0                         
+                                                                         W: output_QuantizeLinear_Input_weights    int8(10x64) (12)      
+                                                                         W: output_QuantizeLinear_Input_bias       int32(10) (9)         
+                                                                         O: output_QuantizeLinear_Input_output     int8(1x10) (10)       
+------ ----------------------------- ---- ------------ -------- -------- ----------------------------------------- --------------------- 
+
+
+
+Number of operations per c-layer
+------- ------ ------------------------------------- --------- ------------ 
+c_id    m_id   name (type)                                 #op         type 
+------- ------ ------------------------------------- --------- ------------ 
+0       10     _Relu_output_0 (Dense)                  100,480   smul_s8_s8 
+1       13     _Relu_1_output_0 (Dense)                  8,256   smul_s8_s8 
+2       16     output_QuantizeLinear_Input (Dense)         650   smul_s8_s8 
+------- ------ ------------------------------------- --------- ------------ 
+total                                                  109,386 
+
+Number of operation types
+---------------- --------- ----------- 
+operation type           #           % 
+---------------- --------- ----------- 
+smul_s8_s8         109,386      100.0% 
+
+Complexity report (model)
+------ ----------------------------- ------------------------- ------------------------- ------ 
+m_id   name                          c_macc                    c_rom                     c_id   
+------ ----------------------------- ------------------------- ------------------------- ------ 
+10     _Relu_output_0                ||||||||||||||||  91.9%   ||||||||||||||||  91.7%   [0]    
+13     _Relu_1_output_0              ||                 7.5%   ||                 7.7%   [1]    
+16     output_QuantizeLinear_Input   |                  0.6%   |                  0.6%   [2]    
+------ ----------------------------- ------------------------- ------------------------- ------ 
+macc=109,386 weights=109,992 act=3,760 ram_io=0
+ 
+ Requested memory size by section - "stm32h7" target
+ ----------------------------- ------- --------- ------- ------- 
+ module                           text    rodata    data     bss 
+ ----------------------------- ------- --------- ------- ------- 
+ NetworkRuntime910_CM7_GCC.a     5,992         0       0       0 
+ network.o                         526     1,166   1,556     132 
+ network_data.o                     48        16     308       0 
+ lib (toolchain)*                    0         0       0       0 
+ ----------------------------- ------- --------- ------- ------- 
+ RT total**                      6,566     1,182   1,864     132 
+ ----------------------------- ------- --------- ------- ------- 
+ weights                             0   109,992       0       0 
+ activations                         0         0       0   3,760 
+ io                                  0         0       0       0 
+ ----------------------------- ------- --------- ------- ------- 
+ TOTAL                           6,566   111,174   1,864   3,892 
+ ----------------------------- ------- --------- ------- ------- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32h7" target
+  --------------------------------------------------
+               FLASH (ro)     %*   RAM (rw)       % 
+  --------------------------------------------------
+  RT total          9,612   8.0%      1,996   34.7% 
+  --------------------------------------------------
+  TOTAL           119,604             5,756         
+  --------------------------------------------------
+  *  rt/total
+
+
+Generated files (7)
+-------------------------------------------------------------------------------------------------- 
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network_data_params.h   
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network_data_params.c   
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network_data.h          
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network_data.c          
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network_config.h        
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network.h               
+/tmp/rootDir-b0e99dcb-ca99-4936-b269-7458bf9625f8/STM32H750B-DK/.ai/output/network.c               

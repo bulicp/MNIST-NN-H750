@@ -1,0 +1,7 @@
+../Core/Src/main.c:220:6:SystemClock_Config	5
+../Core/Src/main.c:342:6:MX_USART3_UART_Init	5
+../Core/Src/main.c:806:9:pa3_ai_network_init	4
+../Core/Src/main.c:847:8:pa3_ai_network_inference	2
+../Core/Src/main.c:925:6:UART_SendString	1
+../Core/Src/main.c:92:5:main	16
+../Core/Src/main.c:975:6:Error_Handler	1

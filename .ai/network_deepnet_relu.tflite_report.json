@@ -1,0 +1,339 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "generate --target stm32h7 --name network -m C:/_AI_Projects/AI_as_a_Service/AIaaS/backend/project_service/templates/deepnet_relu.tflite --compression none --verbosity 1 --allocate-inputs --allocate-outputs --split-weights --workspace C:/Users/hamitiya/AppData/Local/Temp/mxAI_workspace3213430718030018182234312285915984 --output C:/Users/hamitiya/.stm32cubemx/network_output",
+    "cli_version": {
+        "extra": "A1",
+        "major": 1,
+        "micro": 0,
+        "minor": 0
+    },
+    "cli_version_str": "1.0.0-A1",
+    "code_size": 0,
+    "compression": [],
+    "date_time": "2024-06-17T19:11:33+0200",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "generate",
+    "exec_duration": 0.0,
+    "hash": "0x618b99f6affae758e1dde519b5f71a50",
+    "inputs": [
+        "dense_1_input"
+    ],
+    "layers": [
+        {
+            "c_id": [
+                0,
+                1
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 396,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        99
+                    ]
+                },
+                "rom_size": 13200
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "dense_1_input",
+            "original": "",
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 3267,
+                "psize": 13068,
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "dense_1_kernel_transpose",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 33,
+                "psize": 132,
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "dense_1_MatMul_bias",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 3300,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 132,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        33
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "dense_1_input",
+                "dense_1_kernel_transpose",
+                "dense_1_MatMul_bias"
+            ],
+            "name": "gemm_0",
+            "original": "FULLY_CONNECTED",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 33,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 132,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        33
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [
+                "gemm_0"
+            ],
+            "name": "nl_0_nl",
+            "original": "FULLY_CONNECTED",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                2,
+                3
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 495,
+                "psize": 1980,
+                "rom_size": 2040
+            },
+            "id": 1,
+            "inputs": [],
+            "name": "dense_2_kernel_transpose",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 15,
+                "psize": 60,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [],
+            "name": "dense_2_MatMul_bias",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 510,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 60,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        15
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "nl_0_nl",
+                "dense_2_kernel_transpose",
+                "dense_2_MatMul_bias"
+            ],
+            "name": "gemm_1",
+            "original": "FULLY_CONNECTED",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 15,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 60,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        15
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [
+                "gemm_1"
+            ],
+            "name": "nl_1_nl",
+            "original": "FULLY_CONNECTED",
+            "type": "Nonlinearity"
+        },
+        {
+            "c_id": [
+                4
+            ],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 75,
+                "psize": 300,
+                "rom_size": 320
+            },
+            "id": 2,
+            "inputs": [],
+            "name": "dense_3_kernel_transpose",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 5,
+                "psize": 20,
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [],
+            "name": "dense_3_MatMul_bias",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 80,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 20,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        5
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [
+                "nl_1_nl",
+                "dense_3_kernel_transpose",
+                "dense_3_MatMul_bias"
+            ],
+            "name": "gemm_2",
+            "original": "FULLY_CONNECTED",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [
+                5
+            ],
+            "extras": {
+                "n_macc": 75,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 20,
+                    "fmt": {
+                        "format": "float"
+                    },
+                    "shape": [
+                        5
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [
+                "gemm_2"
+            ],
+            "name": "nl_3",
+            "original": "SOFTMAX",
+            "type": "Nonlinearity"
+        }
+    ],
+    "model_files": [
+        "C:\\_AI_Projects\\AI_as_a_Service\\AIaaS\\backend\\project_service\\templates\\deepnet_relu.tflite"
+    ],
+    "model_n_params": 3890,
+    "model_name": "deepnet_relu",
+    "model_size": 15560,
+    "model_type": "tflite",
+    "name": "network",
+    "outputs": [
+        "nl_3"
+    ],
+    "ram_io_size": [
+        0,
+        0
+    ],
+    "ram_size": 528,
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 396,
+            "c_type": "float",
+            "name": "dense_1_input"
+        }
+    ],
+    "rom_n_macc": 4013,
+    "rom_outputs": [
+        {
+            "c_size": 20,
+            "c_type": "float",
+            "name": "nl_3"
+        }
+    ],
+    "rom_size": 15560,
+    "strategy": "",
+    "tools_api_version": "1.0.0-A1",
+    "tools_version": "1.0.0-A1",
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}

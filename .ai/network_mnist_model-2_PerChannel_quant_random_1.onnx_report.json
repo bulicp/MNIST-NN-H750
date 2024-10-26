@@ -1,0 +1,406 @@
+{
+    "_allocate_inputs": 4,
+    "_allocate_outputs": 4,
+    "cli_parameters": "analyze --target stm32h7 --name network -m /Users/patriciobulic/STM32CubeIDE/H750-MNIST-2/STM32H750B-DK/mnist_model-2_PerChannel_quant_random_1.onnx --compression lossless --verbosity 1 --allocate-inputs --allocate-outputs --memory-pool /var/folders/bv/mzzsrjkn4bld8cx600vmqs340000gp/T/mxAI_workspace4301442513208207797136731230866/mempools.json --workspace /var/folders/bv/mzzsrjkn4bld8cx600vmqs340000gp/T/mxAI_workspace4301442513208207797136731230866 --output /Users/patriciobulic/.stm32cubemx/network_output",
+    "cli_version": {
+        "extra": "19899",
+        "major": 1,
+        "micro": 0,
+        "minor": 0
+    },
+    "cli_version_str": "1.0.0-19899",
+    "code_size": 0,
+    "compression": [],
+    "date_time": "2024-10-26T14:42:09+0200",
+    "error": 0,
+    "error_str": [],
+    "exec_cmd": "analyze",
+    "exec_duration": 0.0,
+    "hash": "0xa5ac311aabe22d0f41c0f21b096c0ece",
+    "inputs": [
+        "input"
+    ],
+    "layers": [
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 784,
+                    "fmt": {
+                        "format": "s8"
+                    },
+                    "shape": [
+                        28,
+                        28,
+                        1
+                    ]
+                },
+                "rom_size": 0
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "input",
+            "original": "",
+            "type": "Input"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 128,
+                "psize": 512,
+                "rom_size": 0
+            },
+            "id": 1,
+            "inputs": [],
+            "name": "fc1_bias_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 100352,
+                "psize": 401408,
+                "rom_size": 0
+            },
+            "id": 2,
+            "inputs": [],
+            "name": "fc1_weight_DequantizeLinear_Output_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 64,
+                "psize": 256,
+                "rom_size": 0
+            },
+            "id": 3,
+            "inputs": [],
+            "name": "fc2_bias_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 8192,
+                "psize": 32768,
+                "rom_size": 0
+            },
+            "id": 4,
+            "inputs": [],
+            "name": "fc2_weight_DequantizeLinear_Output_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 10,
+                "psize": 40,
+                "rom_size": 0
+            },
+            "id": 5,
+            "inputs": [],
+            "name": "fc3_bias_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 640,
+                "psize": 2560,
+                "rom_size": 0
+            },
+            "id": 6,
+            "inputs": [],
+            "name": "fc3_weight_DequantizeLinear_Output_const",
+            "original": "DequantizeLinear",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 7,
+            "inputs": [
+                "input"
+            ],
+            "name": "_Reshape_output_0",
+            "original": "Reshape",
+            "type": "Reshape"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 1568,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 8,
+            "inputs": [
+                "_Reshape_output_0"
+            ],
+            "name": "_Reshape_output_0_QuantizeLinear_Output",
+            "original": "QuantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 1568,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 9,
+            "inputs": [
+                "_Reshape_output_0_QuantizeLinear_Output"
+            ],
+            "name": "_Reshape_output_0_DequantizeLinear_Output",
+            "original": "DequantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [
+                0
+            ],
+            "extras": {
+                "n_macc": 100480,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 128,
+                    "fmt": {
+                        "format": "s8"
+                    },
+                    "shape": [
+                        128
+                    ]
+                },
+                "rom_size": 100864
+            },
+            "id": 10,
+            "inputs": [
+                "_Reshape_output_0_DequantizeLinear_Output",
+                "fc1_weight_DequantizeLinear_Output_const",
+                "fc1_bias_const"
+            ],
+            "name": "_Relu_output_0",
+            "original": "Gemm",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 256,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 11,
+            "inputs": [
+                "_Relu_output_0"
+            ],
+            "name": "_Relu_output_0_QuantizeLinear_Output",
+            "original": "QuantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 256,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 12,
+            "inputs": [
+                "_Relu_output_0_QuantizeLinear_Output"
+            ],
+            "name": "_Relu_output_0_DequantizeLinear_Output",
+            "original": "DequantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [
+                1
+            ],
+            "extras": {
+                "n_macc": 8256,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 64,
+                    "fmt": {
+                        "format": "s8"
+                    },
+                    "shape": [
+                        64
+                    ]
+                },
+                "rom_size": 8448
+            },
+            "id": 13,
+            "inputs": [
+                "_Relu_output_0_DequantizeLinear_Output",
+                "fc2_weight_DequantizeLinear_Output_const",
+                "fc2_bias_const"
+            ],
+            "name": "_Relu_1_output_0",
+            "original": "Gemm",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 128,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 14,
+            "inputs": [
+                "_Relu_1_output_0"
+            ],
+            "name": "_Relu_1_output_0_QuantizeLinear_Output",
+            "original": "QuantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 128,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 15,
+            "inputs": [
+                "_Relu_1_output_0_QuantizeLinear_Output"
+            ],
+            "name": "_Relu_1_output_0_DequantizeLinear_Output",
+            "original": "DequantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [
+                2
+            ],
+            "extras": {
+                "n_macc": 650,
+                "n_params": 0,
+                "psize": 0,
+                "rom_output": {
+                    "c_size": 10,
+                    "fmt": {
+                        "format": "s8"
+                    },
+                    "shape": [
+                        10
+                    ]
+                },
+                "rom_size": 680
+            },
+            "id": 16,
+            "inputs": [
+                "_Relu_1_output_0_DequantizeLinear_Output",
+                "fc3_weight_DequantizeLinear_Output_const",
+                "fc3_bias_const"
+            ],
+            "name": "output_QuantizeLinear_Input",
+            "original": "Gemm",
+            "type": "Gemm"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 20,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 17,
+            "inputs": [
+                "output_QuantizeLinear_Input"
+            ],
+            "name": "output_QuantizeLinear_Output",
+            "original": "QuantizeLinear",
+            "type": "Conversion"
+        },
+        {
+            "c_id": [],
+            "extras": {
+                "n_macc": 20,
+                "n_params": 0,
+                "psize": 0,
+                "rom_size": 0
+            },
+            "id": 18,
+            "inputs": [
+                "output_QuantizeLinear_Output"
+            ],
+            "name": "output",
+            "original": "DequantizeLinear",
+            "type": "Conversion"
+        }
+    ],
+    "model_files": [
+        "/Users/patriciobulic/STM32CubeIDE/H750-MNIST-2/STM32H750B-DK/mnist_model-2_PerChannel_quant_random_1.onnx"
+    ],
+    "model_n_params": 109386,
+    "model_name": "mnist_model2_PerChannel_quant_random_1",
+    "model_size": 437544,
+    "model_type": "onnx",
+    "name": "network",
+    "outputs": [
+        "output_QuantizeLinear_Input"
+    ],
+    "ram_io_size": [
+        0,
+        0
+    ],
+    "ram_size": 3760,
+    "report_version": 1.1,
+    "rom_cfact": 1.0,
+    "rom_heap_inspector": 2048,
+    "rom_inputs": [
+        {
+            "c_size": 784,
+            "c_type": "s8",
+            "name": "input"
+        }
+    ],
+    "rom_n_macc": 109386,
+    "rom_outputs": [
+        {
+            "c_size": 10,
+            "c_type": "s8",
+            "name": "output_QuantizeLinear_Input"
+        }
+    ],
+    "rom_size": 109992,
+    "strategy": "",
+    "tools_api_version": "1.0.0-19899",
+    "tools_version": "1.0.0-19899",
+    "val_error": -1.0,
+    "val_error_desc": "None (None) #-1",
+    "val_metrics": []
+}

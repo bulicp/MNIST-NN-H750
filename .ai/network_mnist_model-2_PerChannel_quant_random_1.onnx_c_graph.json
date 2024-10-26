@@ -1,0 +1,1049 @@
+{
+    "activations": {
+        "POOL_0_DTCMRAM": {
+            "activation_alignment": 4,
+            "buffer_data_size": 0,
+            "buffer_offsets": [
+                {
+                    "buffer_name": "input_output_array",
+                    "offset": 2848,
+                    "size": 784
+                },
+                {
+                    "buffer_name": "_Relu_output_0_output_array",
+                    "offset": 3632,
+                    "size": 128
+                },
+                {
+                    "buffer_name": "_Relu_1_output_0_output_array",
+                    "offset": 2848,
+                    "size": 64
+                },
+                {
+                    "buffer_name": "output_QuantizeLinear_Input_output_array",
+                    "offset": 2912,
+                    "size": 10
+                },
+                {
+                    "buffer_name": "_Relu_output_0_scratch0_array",
+                    "offset": 0,
+                    "size": 2848
+                },
+                {
+                    "buffer_name": "_Relu_1_output_0_scratch0_array",
+                    "offset": 0,
+                    "size": 896
+                },
+                {
+                    "buffer_name": "output_QuantizeLinear_Input_scratch0_array",
+                    "offset": 0,
+                    "size": 228
+                }
+            ],
+            "data_alignment": 4,
+            "pool_id": 0,
+            "pool_size": 126976,
+            "used_size": 3760
+        }
+    },
+    "activations_alignment": 4,
+    "arguments": "analyze --target stm32h7 --name network -m /Users/patriciobulic/STM32CubeIDE/H750-MNIST-2/STM32H750B-DK/mnist_model-2_PerChannel_quant_random_1.onnx --compression lossless --verbosity 1 --allocate-inputs --allocate-outputs --memory-pool /var/folders/bv/mzzsrjkn4bld8cx600vmqs340000gp/T/mxAI_workspace4301442513208207797136731230866/mempools.json --workspace /var/folders/bv/mzzsrjkn4bld8cx600vmqs340000gp/T/mxAI_workspace4301442513208207797136731230866 --output /Users/patriciobulic/.stm32cubemx/network_output",
+    "c_activations_count": 1,
+    "c_arrays": [
+        {
+            "c_bits": 32,
+            "c_id": 0,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 256,
+            "c_type": "const s32",
+            "format": "s32",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 64,
+            "name": "_Relu_1_output_0_bias_array",
+            "offset": 109056,
+            "scale": [],
+            "size": 64,
+            "tensors": [
+                {
+                    "name": "_Relu_1_output_0_bias",
+                    "shape": [
+                        64
+                    ]
+                }
+            ],
+            "zeropoint": [],
+            "zeros": 0
+        },
+        {
+            "c_bits": 8,
+            "c_id": 1,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 64,
+            "c_type": "s8",
+            "format": "s8",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 64,
+            "name": "_Relu_1_output_0_output_array",
+            "offset": 2848,
+            "scale": [
+                0.013014258816838264
+            ],
+            "size": 64,
+            "tensors": [
+                {
+                    "name": "_Relu_1_output_0_output",
+                    "shape": [
+                        64
+                    ]
+                }
+            ],
+            "zeropoint": [
+                -128
+            ]
+        },
+        {
+            "c_bits": 16,
+            "c_id": 2,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 896,
+            "c_type": "s16",
+            "format": "s16",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 448,
+            "name": "_Relu_1_output_0_scratch0_array",
+            "offset": 0,
+            "scale": [],
+            "size": 448,
+            "tensors": [
+                {
+                    "name": "_Relu_1_output_0_scratch0",
+                    "shape": [
+                        1,
+                        1,
+                        448,
+                        1
+                    ]
+                }
+            ],
+            "zeropoint": []
+        },
+        {
+            "c_bits": 8,
+            "c_id": 3,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 8192,
+            "c_type": "const s8",
+            "format": "s8",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 8192,
+            "name": "_Relu_1_output_0_weights_array",
+            "offset": 100864,
+            "scale": [
+                0.0020708483643829823,
+                0.004371901508420706,
+                0.004955550655722618,
+                0.005913735833019018,
+                0.00295217614620924,
+                0.003168373368680477,
+                0.0026747803203761578,
+                0.004568376578390598,
+                0.004937137942761183,
+                0.00321712507866323,
+                0.004700086545199156,
+                0.001768662710674107,
+                0.004476066678762436,
+                0.0061930203810334206,
+                0.004511879291385412,
+                0.006653035990893841,
+                0.005077613051980734,
+                0.005941698793321848,
+                0.004278345033526421,
+                0.005262451246380806,
+                0.005647633690387011,
+                0.00413140095770359,
+                0.004109985660761595,
+                0.005918528418987989,
+                0.005260901525616646,
+                0.004640751052647829,
+                0.005877786781638861,
+                0.005704729352146387,
+                0.0033618060406297445,
+                0.004034784156829119,
+                0.004187416285276413,
+                0.003938888665288687,
+                0.004383360967040062,
+                0.005414336454123259,
+                0.004388932138681412,
+                0.0035513623151928186,
+                0.0037720734253525734,
+                0.005536900367587805,
+                0.004465639125555754,
+                0.004400654695928097,
+                0.004222390241920948,
+                0.00576400151476264,
+                0.002058459213003516,
+                0.0020173052325844765,
+                0.0045510148629546165,
+                0.004415665753185749,
+                0.003635640488937497,
+                0.0032049512956291437,
+                0.004771118517965078,
+                0.003899256233125925,
+                0.005302914883941412,
+                0.00548310624435544,
+                0.0036878446117043495,
+                0.003544251201674342,
+                0.0021047107875347137,
+                0.003593332599848509,
+                0.002593556186184287,
+                0.0046307966113090515,
+                0.0036126605700701475,
+                0.00460649561136961,
+                0.003082391805946827,
+                0.002643000101670623,
+                0.00612301891669631,
+                0.00613008625805378
+            ],
+            "size": 8192,
+            "tensors": [
+                {
+                    "name": "_Relu_1_output_0_weights",
+                    "shape": [
+                        64,
+                        128
+                    ]
+                }
+            ],
+            "zeropoint": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "zeros": 0
+        },
+        {
+            "c_bits": 32,
+            "c_id": 4,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 512,
+            "c_type": "const s32",
+            "format": "s32",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 128,
+            "name": "_Relu_output_0_bias_array",
+            "offset": 100352,
+            "scale": [],
+            "size": 128,
+            "tensors": [
+                {
+                    "name": "_Relu_output_0_bias",
+                    "shape": [
+                        128
+                    ]
+                }
+            ],
+            "zeropoint": [],
+            "zeros": 0
+        },
+        {
+            "c_bits": 8,
+            "c_id": 5,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 128,
+            "c_type": "s8",
+            "format": "s8",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 128,
+            "name": "_Relu_output_0_output_array",
+            "offset": 3632,
+            "scale": [
+                0.02078697457909584
+            ],
+            "size": 128,
+            "tensors": [
+                {
+                    "name": "_Relu_output_0_output",
+                    "shape": [
+                        128
+                    ]
+                }
+            ],
+            "zeropoint": [
+                -128
+            ]
+        },
+        {
+            "c_bits": 16,
+            "c_id": 6,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 2848,
+            "c_type": "s16",
+            "format": "s16",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 1424,
+            "name": "_Relu_output_0_scratch0_array",
+            "offset": 0,
+            "scale": [],
+            "size": 1424,
+            "tensors": [
+                {
+                    "name": "_Relu_output_0_scratch0",
+                    "shape": [
+                        1,
+                        1,
+                        1424,
+                        1
+                    ]
+                }
+            ],
+            "zeropoint": []
+        },
+        {
+            "c_bits": 8,
+            "c_id": 7,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 100352,
+            "c_type": "const s8",
+            "format": "s8",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 100352,
+            "name": "_Relu_output_0_weights_array",
+            "offset": 0,
+            "scale": [
+                0.0007079303031787276,
+                0.004798804875463247,
+                0.0006557782180607319,
+                0.0006772403721697628,
+                0.0006666581030003726,
+                0.006614090874791145,
+                0.0006518425652757287,
+                0.005044047720730305,
+                0.0006716084899380803,
+                0.0057374294847249985,
+                0.0032937335781753063,
+                0.0035804472863674164,
+                0.0006321714608930051,
+                0.0006854009116068482,
+                0.0006794706569053233,
+                0.006392627954483032,
+                0.0006399615667760372,
+                0.005387026350945234,
+                0.0055902618914842606,
+                0.00482142111286521,
+                0.0007145257550291717,
+                0.00408439664170146,
+                0.0006720233359374106,
+                0.004974322393536568,
+                0.00436790706589818,
+                0.0006655697361566126,
+                0.0006671634619124234,
+                0.004876002669334412,
+                0.000651294132694602,
+                0.0006839141715317965,
+                0.0006926680216565728,
+                0.004385636653751135,
+                0.005424050614237785,
+                0.0006507214275188744,
+                0.00665832357481122,
+                0.004899454768747091,
+                0.0060631027445197105,
+                0.0007145549170672894,
+                0.006111845839768648,
+                0.000651771726552397,
+                0.003723611356690526,
+                0.003942638169974089,
+                0.0006514053093269467,
+                0.004722905810922384,
+                0.006069133058190346,
+                0.005942018702626228,
+                0.006881318520754576,
+                0.00470268540084362,
+                0.0006849363562650979,
+                0.0006323257111944258,
+                0.007021876517683268,
+                0.0006779689574614167,
+                0.005106836091727018,
+                0.006364201195538044,
+                0.0006827316829003394,
+                0.005739910993725061,
+                0.000705077254679054,
+                0.0009670770959928632,
+                0.0007469153497368097,
+                0.006096397992223501,
+                0.0006512370309792459,
+                0.005328229628503323,
+                0.0034368669148534536,
+                0.0006838019471615553,
+                0.00578533997759223,
+                0.0006555812433362007,
+                0.0006886208429932594,
+                0.0040330481715500355,
+                0.004025324247777462,
+                0.005612461362034082,
+                0.00063967244932428,
+                0.006361733190715313,
+                0.004511095117777586,
+                0.005411465186625719,
+                0.006272089201956987,
+                0.0006518274312838912,
+                0.004252892453223467,
+                0.007723911665380001,
+                0.008155285380780697,
+                0.00065000937320292,
+                0.005018426571041346,
+                0.0006805950542911887,
+                0.0007662266725674272,
+                0.0007019646582193673,
+                0.0007399418973363936,
+                0.0005571809597313404,
+                0.003980040084570646,
+                0.00065085687674582,
+                0.00794442929327488,
+                0.004844946321099997,
+                0.006902300287038088,
+                0.00605217507109046,
+                0.006040289532393217,
+                0.0006887312047183514,
+                0.004506099037826061,
+                0.0006515003624372184,
+                0.0006676748162135482,
+                0.000710821186657995,
+                0.005779065657407045,
+                0.00932462140917778,
+                0.004895070102065802,
+                0.004898945800960064,
+                0.0038957016076892614,
+                0.007720173802226782,
+                0.0006388192414306104,
+                0.0006835124222561717,
+                0.000651845708489418,
+                0.004661445040255785,
+                0.0006516302819363773,
+                0.004030119627714157,
+                0.005400246009230614,
+                0.000651131384074688,
+                0.004434374626725912,
+                0.0047165281139314175,
+                0.0006509926752187312,
+                0.004840277135372162,
+                0.0006825158488936722,
+                0.0008338158950209618,
+                0.005801742430776358,
+                0.0006515680579468608,
+                0.0006516785360872746,
+                0.0045315660536289215,
+                0.0006509677041321993,
+                0.0006892987294122577,
+                0.005895208101719618,
+                0.004730329383164644,
+                0.0006514348788186908,
+                0.006713477429002523
+            ],
+            "size": 100352,
+            "tensors": [
+                {
+                    "name": "_Relu_output_0_weights",
+                    "shape": [
+                        128,
+                        784
+                    ]
+                }
+            ],
+            "zeropoint": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "zeros": 0
+        },
+        {
+            "c_bits": 8,
+            "c_id": 8,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 784,
+            "c_type": "s8",
+            "format": "s8",
+            "io_type": "input",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 784,
+            "name": "input_output_array",
+            "offset": 2848,
+            "scale": [
+                0.003921163268387318
+            ],
+            "size": 784,
+            "tensors": [
+                {
+                    "name": "input_output",
+                    "shape": [
+                        1,
+                        28,
+                        28
+                    ]
+                }
+            ],
+            "zeropoint": [
+                -128
+            ]
+        },
+        {
+            "c_bits": 32,
+            "c_id": 9,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 40,
+            "c_type": "const s32",
+            "format": "s32",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 10,
+            "name": "output_QuantizeLinear_Input_bias_array",
+            "offset": 109952,
+            "scale": [],
+            "size": 10,
+            "tensors": [
+                {
+                    "name": "output_QuantizeLinear_Input_bias",
+                    "shape": [
+                        10
+                    ]
+                }
+            ],
+            "zeropoint": [],
+            "zeros": 0
+        },
+        {
+            "c_bits": 8,
+            "c_id": 10,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 10,
+            "c_type": "s8",
+            "format": "s8",
+            "io_type": "output",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 10,
+            "name": "output_QuantizeLinear_Input_output_array",
+            "offset": 2912,
+            "scale": [
+                0.027057994157075882
+            ],
+            "size": 10,
+            "tensors": [
+                {
+                    "name": "output_QuantizeLinear_Input_output",
+                    "shape": [
+                        10
+                    ]
+                }
+            ],
+            "zeropoint": [
+                52
+            ]
+        },
+        {
+            "c_bits": 16,
+            "c_id": 11,
+            "c_mem_pool": "POOL_0_DTCMRAM",
+            "c_size_in_byte": 228,
+            "c_type": "s16",
+            "format": "s16",
+            "is_const": false,
+            "mem_pool": "activations",
+            "n_items": 114,
+            "name": "output_QuantizeLinear_Input_scratch0_array",
+            "offset": 0,
+            "scale": [],
+            "size": 114,
+            "tensors": [
+                {
+                    "name": "output_QuantizeLinear_Input_scratch0",
+                    "shape": [
+                        1,
+                        1,
+                        114,
+                        1
+                    ]
+                }
+            ],
+            "zeropoint": []
+        },
+        {
+            "c_bits": 8,
+            "c_id": 12,
+            "c_mem_pool": "weights",
+            "c_size_in_byte": 640,
+            "c_type": "const s8",
+            "format": "s8",
+            "is_const": true,
+            "mem_pool": "weights",
+            "n_items": 640,
+            "name": "output_QuantizeLinear_Input_weights_array",
+            "offset": 109312,
+            "scale": [
+                0.0058645689859986305,
+                0.008751314133405685,
+                0.005145509727299213,
+                0.005495833698660135,
+                0.006232853513211012,
+                0.004730059765279293,
+                0.006336245685815811,
+                0.006422881968319416,
+                0.005525283049792051,
+                0.0064177378080785275
+            ],
+            "size": 640,
+            "tensors": [
+                {
+                    "name": "output_QuantizeLinear_Input_weights",
+                    "shape": [
+                        10,
+                        64
+                    ]
+                }
+            ],
+            "zeropoint": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "zeros": 0
+        }
+    ],
+    "c_arrays_n": 13,
+    "c_layers": [
+        {
+            "c_forward": [
+                "forward_dense_integer_SSSA_ch"
+            ],
+            "c_id": 0,
+            "is_wrapped": "",
+            "layer_type": "Dense",
+            "m_id": 10,
+            "macc": 100480,
+            "name": "_Relu_output_0",
+            "op_by_type": {
+                "smul_s8_s8": 100480
+            },
+            "rom": 100864,
+            "tensors": {
+                "inputs": [
+                    "input_output"
+                ],
+                "outputs": [
+                    "_Relu_output_0_output"
+                ],
+                "scratchs": [
+                    "_Relu_output_0_scratch0"
+                ],
+                "weights": [
+                    "_Relu_output_0_weights",
+                    "_Relu_output_0_bias"
+                ]
+            },
+            "weight_sparsity": [
+                0.0,
+                100480,
+                0
+            ]
+        },
+        {
+            "c_forward": [
+                "forward_dense_integer_SSSA_ch"
+            ],
+            "c_id": 1,
+            "is_wrapped": "",
+            "layer_type": "Dense",
+            "m_id": 13,
+            "macc": 8256,
+            "name": "_Relu_1_output_0",
+            "op_by_type": {
+                "smul_s8_s8": 8256
+            },
+            "rom": 8448,
+            "tensors": {
+                "inputs": [
+                    "_Relu_output_0_output"
+                ],
+                "outputs": [
+                    "_Relu_1_output_0_output"
+                ],
+                "scratchs": [
+                    "_Relu_1_output_0_scratch0"
+                ],
+                "weights": [
+                    "_Relu_1_output_0_weights",
+                    "_Relu_1_output_0_bias"
+                ]
+            },
+            "weight_sparsity": [
+                0.0,
+                8256,
+                0
+            ]
+        },
+        {
+            "c_forward": [
+                "forward_dense_integer_SSSA_ch"
+            ],
+            "c_id": 2,
+            "is_wrapped": "",
+            "layer_type": "Dense",
+            "m_id": 16,
+            "macc": 650,
+            "name": "output_QuantizeLinear_Input",
+            "op_by_type": {
+                "smul_s8_s8": 650
+            },
+            "rom": 680,
+            "tensors": {
+                "inputs": [
+                    "_Relu_1_output_0_output"
+                ],
+                "outputs": [
+                    "output_QuantizeLinear_Input_output"
+                ],
+                "scratchs": [
+                    "output_QuantizeLinear_Input_scratch0"
+                ],
+                "weights": [
+                    "output_QuantizeLinear_Input_weights",
+                    "output_QuantizeLinear_Input_bias"
+                ]
+            },
+            "weight_sparsity": [
+                0.0,
+                650,
+                0
+            ]
+        }
+    ],
+    "c_name": "network",
+    "c_nodes_n": 3,
+    "c_weights_count": 1,
+    "c_weights_header": 0,
+    "compilation_options": {
+        "compression": "lossless",
+        "optimization": "balanced",
+        "options": [
+            "allocate-inputs",
+            "allocate-outputs",
+            "multi-heaps"
+        ]
+    },
+    "data_alignment": 4,
+    "date_time": "2024-10-26T14:42:09+0200",
+    "inputs": [
+        "input_output"
+    ],
+    "macc": 109386,
+    "memory_footprint": {
+        "activations": 3760,
+        "io": [
+            0,
+            0
+        ],
+        "kernel_flash": 9408,
+        "kernel_ram": 1756,
+        "series": "stm32h7",
+        "target": "stm32h7",
+        "toolchain": "arm-none-eabi-gcc (GNU Tools for STM32 12.3.rel1.20240612-1315) 12.3.1 20230626",
+        "toolchain_flash": 0,
+        "toolchain_ram": 0,
+        "weights": 109992
+    },
+    "memory_pools": [
+        {
+            "buff_n": 7,
+            "name": "POOL_0_DTCMRAM",
+            "pool_id": 0,
+            "size": 126976,
+            "used_size": 3760
+        },
+        {
+            "buff_n": 0,
+            "name": "POOL_1_RAM_D1",
+            "pool_id": 1,
+            "size": 495616,
+            "used_size": 0
+        },
+        {
+            "buff_n": 0,
+            "name": "POOL_2_RAM_D2",
+            "pool_id": 2,
+            "size": 294912,
+            "used_size": 0
+        },
+        {
+            "buff_n": 0,
+            "name": "POOL_3_RAM_D3",
+            "pool_id": 3,
+            "size": 65536,
+            "used_size": 0
+        },
+        {
+            "buff_n": 0,
+            "name": "POOL_EXTERNAL_SDRAM",
+            "pool_id": 4,
+            "size": 8388608,
+            "used_size": 0
+        },
+        {
+            "buff_n": 6,
+            "name": "weights_array",
+            "pool_id": 5,
+            "size": -1,
+            "used_size": 109992
+        }
+    ],
+    "model_fmt": "ss/sa per channel",
+    "model_name": "mnist_model2_PerChannel_quant_random_1",
+    "model_signature": "0xa5ac311aabe22d0f41c0f21b096c0ece",
+    "outputs": [
+        "output_QuantizeLinear_Input_output"
+    ],
+    "st_ai_version": "1.0.0-19899",
+    "tool_version": "1.0.0-19899",
+    "type": "onnx",
+    "version": "1.2",
+    "weights": {
+        "weights_array": {
+            "buffer_data_size": 109992,
+            "buffer_offsets": [
+                {
+                    "buffer_name": "_Relu_output_0_weights_array",
+                    "offset": 0,
+                    "size": 100352
+                },
+                {
+                    "buffer_name": "_Relu_output_0_bias_array",
+                    "offset": 100352,
+                    "size": 512
+                },
+                {
+                    "buffer_name": "_Relu_1_output_0_weights_array",
+                    "offset": 100864,
+                    "size": 8192
+                },
+                {
+                    "buffer_name": "_Relu_1_output_0_bias_array",
+                    "offset": 109056,
+                    "size": 256
+                },
+                {
+                    "buffer_name": "output_QuantizeLinear_Input_weights_array",
+                    "offset": 109312,
+                    "size": 640
+                },
+                {
+                    "buffer_name": "output_QuantizeLinear_Input_bias_array",
+                    "offset": 109952,
+                    "size": 40
+                }
+            ],
+            "pool_size": -1,
+            "used_size": 109992
+        }
+    }
+}

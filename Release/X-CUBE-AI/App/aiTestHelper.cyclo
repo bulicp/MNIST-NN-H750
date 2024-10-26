@@ -1,0 +1,5 @@
+../X-CUBE-AI/App/aiTestHelper.c:143:13:_aiPrintDataInfo	1
+../X-CUBE-AI/App/aiTestHelper.c:41:6:aiPlatformVersion	1
+../X-CUBE-AI/App/aiTestHelper.c:54:6:aiLogErr	2
+../X-CUBE-AI/App/aiTestHelper.c:77:6:aiPrintBufferInfo	22
+../X-CUBE-AI/App/aiTestHelper.c:154:6:aiPrintNetworkInfo	6

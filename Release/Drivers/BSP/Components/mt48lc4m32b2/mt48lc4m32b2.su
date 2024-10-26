@@ -1,0 +1,10 @@
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:101:9:MT48LC4M32B2_ClockEnable	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:125:9:MT48LC4M32B2_Precharge	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:149:9:MT48LC4M32B2_ModeRegConfig	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:182:9:MT48LC4M32B2_TimingConfig	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:203:9:MT48LC4M32B2_RefreshMode	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:227:9:MT48LC4M32B2_RefreshRate	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:63:9:MT48LC4M32B2_Init	16	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:246:9:MT48LC4M32B2_EnterPowerMode	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:270:9:MT48LC4M32B2_ExitPowerMode	8	static
+../Drivers/BSP/Components/mt48lc4m32b2/mt48lc4m32b2.c:294:9:MT48LC4M32B2_Sendcmd	8	static
