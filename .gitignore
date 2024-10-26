@@ -16,11 +16,17 @@
 *.gch
 *.pch
 
+# Pa3cio, 26.10.2024 we should not ignore the libraries as the network models are in *.a files
 # Libraries
-*.lib
-*.a
-*.la
-*.lo
+#*.lib
+#*.a
+#*.la
+#*.lo
+
+# Pa3cio, 26.10.2024
+# Ignore Debug and Release directories
+Debug/
+Release/
 
 # Shared objects (inc. Windows DLLs)
 *.dll
