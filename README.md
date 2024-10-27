@@ -256,9 +256,9 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
 
 ---
 
-## 9. Programming and Debugging an STM32H750 Project with STM32CubeProgrammer and STM32CubeIDE
+## 8. Programming and Debugging an STM32H750 Project with STM32CubeProgrammer and STM32CubeIDE
 
-### 9.1. Flashing the Firmware using STM32CubeProgrammer with an External Loader
+### 8.1. Flashing the Firmware using STM32CubeProgrammer with an External Loader
 
 #### Step 1: Connect and Set Up the STM32H750 Board
 - **Connect** your STM32H750 board to your computer via USB or another interface that supports flashing (e.g., ST-Link).
@@ -281,9 +281,7 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
 2. Ensure the **Memory Type** (Internal or External) is set based on where you want the firmware loaded.
 3. Click **Download** to program the firmware into the selected memory.
 
----
-
-### 9.2. Configuring STM32CubeIDE to Debug Without Flashing
+### 8.2. Configuring STM32CubeIDE to Debug Without Flashing
 
 In some cases, you may want to start a debug session without re-flashing the firmware each time. Here’s how to configure STM32CubeIDE to allow this.
 
@@ -299,19 +297,13 @@ In some cases, you may want to start a debug session without re-flashing the fir
 #### Step 3: Apply the Configuration
 - Click **Apply** to save your changes, and then click **Close**.
 
----
-
-### 9.3. Starting the Debug Session Without Flashing
+### 8.3. Starting the Debug Session Without Flashing
 
 1. Once the configuration is saved, initiate the debug session by selecting the debug icon (the green bug icon) in STM32CubeIDE.
 2. Use breakpoints, step-throughs, and other debug tools as usual to inspect the program’s execution.
 
 
-
-
-
-
-## 10. **Generating a Quantized MNIST Test Subset for STM32 Testing**
+## 9. **Generating a Quantized MNIST Test Subset for STM32 Testing**
 
 
 Testing a neural network on an STM32H750 requires efficient, quantized data to match the 8-bit format of the deployed model. This script:
@@ -410,10 +402,7 @@ with open('mnist_test_subset.h', 'w') as f:
 print("Header file 'mnist_test_subset.h' has been generated.")
 ```
 
-
-
-
-## 11. Initializing and Running a Neural Network on STM32H750 with Cube.AI
+## 10. Initializing and Running a Neural Network on STM32H750 with Cube.AI
 
 Now, we’ll walk through setting up and running a neural network on the STM32H750 using STM32Cube.AI. Below are the necessary variables you’ll need to declare in `main.c` and explanations of each.
 
@@ -443,7 +432,7 @@ uint8_t recognized_digits[MNIST_TEST_SUBSET_SIZE] = {0};
 
 
 
-### Function: `pa3_ai_network_init`
+### 10.1. Function: `pa3_ai_network_init`
 
 The `pa3_ai_network_init` function is responsible for creating and initializing the neural network instance for the STM32H750. It performs the following key tasks:
 
@@ -483,7 +472,7 @@ The `ai_network_params` structure is populated with:
 - Activations: Set using the macro `AI_NETWORK_DATA_ACTIVATIONS(activations)`.
 The function `calls ai_network_init` with the network instance and the prepared parameters.
 
-### Function: `pa3_ai_network_inference()`
+### 10.2. Function: `pa3_ai_network_inference()`
 
 The `pa3_ai_network_inference` function is designed to perform inference using a neural network on the STM32H750. It takes input data, processes it through the network, and outputs the results.
 
@@ -592,8 +581,6 @@ The shape of the input buffer is defined using another structure that holds `siz
   - `.data`: This is a pointer to `inputput_shape_data`, which holds the actual dimensions of the output. In this case, it defines the shape as an array representing the input configuration.
 
 
-
-
 Here's a detailed explanation of the code snippet that initializes the output buffer for a neural network inference on the STM32H750:
 ```c
 ai_shape_dimension output_shape_data[] = { 1, AI_NETWORK_OUT_1_SIZE, 1, 1};
@@ -638,7 +625,7 @@ This function call runs the network using the initialized input and output buffe
 
 
 
-### main() function
+### 10.3. main() function
 
 In the `main()` function we create and initialize the network and run the inference over the whole input dataset. The following code presents only the part of the `main()` functin that contains the user code only (not the MX generated code):
 
@@ -697,13 +684,11 @@ int main(void)
 	accuracy = (float)success / (float)MNIST_TEST_SUBSET_SIZE;
 
     // . . .
-
-
 ```
-
 
 ## Conclusion
 
-I hope this guide will help you implement, train, test, and deploy a neural network for the MNIST dataset (or some other network) on the STM32H750 board. 
+I hope this guide helps you implement, train, test, and deploy a neural network for the MNIST dataset (or other models) on the STM32H750 board. If you have any questions, encounter issues, or find any steps unclear, please don’t hesitate to reach out. And if you find this project useful, feel free to share it with others!
 
+pa3cio@fri.uni-lj.si
 
