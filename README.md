@@ -213,18 +213,18 @@ export_model_to_onnx(model)
 4. Click **Start**.
 5. The new page appeass (Select a platform). Select **STM32 MCUs**.
 
-## 6. Quantizing the Model
+### 6.1. Quantizing the Model
 
 1. After importing, select the model from your model list.
 2. Click on **Quantization** to begin the process.
 3. Choose the desired quantization parameters (e.g., INT8).
 4. Click **Quantize** and wait for the process to complete.
 
-## 7. Model benchmarking
+### 6.2. Model benchmarking
 1. Select the board and click **Start Benchmark**
 2. Once the benchmark is finished, click on **...** and select **Generate code for this board**
 
-## 7. Creating the Project for STM32H750
+### 6.3. Creating the Project for STM32H750
 
 1. Now the **Generate your project** section appears.
 2. On the bottom left locate **CPU/Series** and select **ARM Cortex-M7**
@@ -233,10 +233,8 @@ export_model_to_onnx(model)
 5. a zip will be downloaded containing the STM32H750B-DK directory with sources.
 
 
----
 
-
-## 8. Opening a Generated STM32CubeIDE Project in STM32CubeIDE
+## 7. Opening a Generated STM32CubeIDE Project in STM32CubeIDE
 
 Once you've generated your project in the ST Edge AI Developer Cloud or from any other source, you can easily open it in STM32CubeIDE to begin development or testing. Follow the steps below:
 
