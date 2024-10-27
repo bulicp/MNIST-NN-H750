@@ -24,9 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "network.h"
 #include "network_data.h"
-
 #include "mnist_test_subset-100b.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,6 +76,7 @@ static void MX_ADC3_Init(void);
 ai_bool pa3_ai_network_init(void);
 ai_i32 pa3_ai_network_inference(ai_i8 *input_data, ai_i8 *output_data);
 void UART_SendString(UART_HandleTypeDef* huart, const char *str);
+void pa3_run_model_on_test_dataset(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -129,76 +128,30 @@ int main(void)
   //MX_X_CUBE_AI_Init();
   /* USER CODE BEGIN 2 */
   MX_USART3_UART_Init();
-    BSP_QSPI_Init_t qspiInit;
-    qspiInit.InterfaceMode=MT25TL01G_QPI_MODE;
-    qspiInit.TransferRate= MT25TL01G_DTR_TRANSFER ;
-    qspiInit.DualFlashMode= MT25TL01G_DUALFLASH_ENABLE;
-    BSP_QSPI_Init(0,&qspiInit);
-    BSP_QSPI_EnableMemoryMappedMode(0);
-    BSP_SDRAM_Init(0);
-    HAL_Delay(4000);
-      UART_SendString(&huart3, "Initializing network...\n");
-      HAL_Delay(300);
-  	if (!pa3_ai_network_init()) {
-  	  // Handle initialization error
-  	 UART_SendString(&huart3, "   Error initializing network.\n");
-  	  __NOP();
-  	  return -1;
-  	}
+  BSP_QSPI_Init_t qspiInit;
+  qspiInit.InterfaceMode=MT25TL01G_QPI_MODE;
+  qspiInit.TransferRate= MT25TL01G_DTR_TRANSFER ;
+  qspiInit.DualFlashMode= MT25TL01G_DUALFLASH_ENABLE;
+  BSP_QSPI_Init(0,&qspiInit);
+  BSP_QSPI_EnableMemoryMappedMode(0);
+  BSP_SDRAM_Init(0);
 
-  	UART_SendString(&huart3, "Network initialized.\n");
-  	ai_network_get_info(network, &report);
-  	sprintf(buffer, "   Network name: %s \n", report.model_name);
-      UART_SendString(&huart3, buffer);
-      sprintf(buffer, "   Network runtime version: %d.%d.%d \n", report.runtime_version.major, report.runtime_version.minor, report.runtime_version.micro);
-      UART_SendString(&huart3, buffer);
+  HAL_Delay(4000);
+  UART_SendString(&huart3, "Initializing network...\n");
+  HAL_Delay(300);
+  if (!pa3_ai_network_init()) {
+    // Handle initialization error
+    UART_SendString(&huart3, "   Error initializing network.\n");
+    __NOP();
+    return -1;
+  }
 
-
-    	// Loop over all MNIST_TEST_SUBSET_SIZE test samples
-      UART_SendString(&huart3, "\n\nRunning inference...\n");
-      sprintf(buffer, "   MNIST test dataset size: %d \n", MNIST_TEST_SUBSET_SIZE);
-      UART_SendString(&huart3, buffer);
-  	for (int i = 0; i < MNIST_TEST_SUBSET_SIZE; i++) {
-  	  // Copy the test sample data (uint8) into network input buffer (int8)
-  	  for (int j = 0; j < AI_NETWORK_IN_1_SIZE; j++) {
-  		  network_input[j] = (ai_i8)(mnist_test[i][j]);
-  	  }
-
-  	  // Run inference on the current sample
-  	  if (pa3_ai_network_inference(network_input, network_output) != 0) {
-  		  //printf("Inference failed for sample %d\n", i);
-  		  __NOP();
-  		  UART_SendString(&huart3, "Error running inference.");
-  		  return -1;
-  	  }
-
-  	  int8_t max = -127;
-  	  int8_t digit = 0;
-  	  for(int k = 0; k < AI_NETWORK_OUT_1_SIZE ; k++) {
-  		  if (network_output[k] >= max){
-  			  max = network_output[k];
-  			  digit = k;
-  		  }
-  	  }
-  	  recognized_digits[i] = digit;
-  	  sprintf(buffer, "   Data %d: Recognized character: %d Label: %d", i, digit, mnist_test_labels[i]);
-  	  UART_SendString(&huart3, buffer);
-  	  if (digit != mnist_test_labels[i]){
-  		  UART_SendString(&huart3, " *** Error \n");
-  	  }
-  	  else UART_SendString(&huart3, "\n");
-  	  HAL_Delay(150);
-  	}
-
-  	for(int i = 0; i < MNIST_TEST_SUBSET_SIZE; i++) {
-  	  if (recognized_digits[i] == mnist_test_labels[i]) {
-  		  success ++;
-  	  }
-  	}
-  	accuracy = (float)success / (float)MNIST_TEST_SUBSET_SIZE;
-  	//printf("Accuracy = %f", accuracy);
-  	sprintf(buffer, "\n\nNetwork accuracy: %f", accuracy);
-  	UART_SendString(&huart3, buffer);
+  UART_SendString(&huart3, "Network initialized.\n");
+  ai_network_get_info(network, &report);
+  sprintf(buffer, "   Network name: %s \n", report.model_name);
+  UART_SendString(&huart3, buffer);
+  sprintf(buffer, "   Network runtime version: %d.%d.%d \n", report.runtime_version.major, report.runtime_version.minor, report.runtime_version.micro);
+  UART_SendString(&huart3, buffer);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -207,8 +160,11 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-  //MX_X_CUBE_AI_Process();
+    //MX_X_CUBE_AI_Process();
+
     /* USER CODE BEGIN 3 */
+    pa3_run_model_on_test_dataset();
+    HAL_Delay(200);
   }
   /* USER CODE END 3 */
 }
@@ -798,7 +754,13 @@ static void MX_GPIO_Init(void)
   /*AnalogSwitch Config */
   HAL_SYSCFG_AnalogSwitchConfig(SYSCFG_SWITCH_PA1, SYSCFG_SWITCH_PA1_OPEN);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  //Config PE3 on connector CN2. Pa3cio.
+  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
@@ -813,25 +775,13 @@ ai_bool pa3_ai_network_init(void)
         return false;
     }
 
-    /*
-    ai_network_params params;
-    ai_network_data_params_get(&params)
-    for (int idx=0; idx < params.map_activations.size; idx++)
-    	AI_BUFFER_ARRAY_ITEM_SET_ADDRESS(&params.map_activations, idx, data_activations0[0]);
-
-*/
     // Initialize the network with the activation memory buffer
 
     ai_network_params params = {
     		AI_NETWORK_DATA_WEIGHTS(ai_network_data_weights_get()),  	// Macro for getting weights
-    		AI_NETWORK_DATA_ACTIVATIONS(data_activations0[0])  					// Macro for setting activations buffer
+    		AI_NETWORK_DATA_ACTIVATIONS(data_activations0[0])  		// Macro for setting activations buffer
     };
-    /*
-    ai_network_params params = {
-        		AI_NETWORK_DATA_WEIGHTS(ai_network_data_weights_get()),  	// Macro for getting weights
-        		AI_NETWORK_DATA_ACTIVATIONS(activations)  					// Macro for setting activations buffer
-        };
-        */
+    
     if (!ai_network_init(network, &params)) {
         // Handle error: failed to initialize the network
     	ai_error err = ai_network_get_error(network);
@@ -846,8 +796,8 @@ ai_bool pa3_ai_network_init(void)
 
 ai_i32 pa3_ai_network_inference(ai_i8 *input_data, ai_i8 *output_data)
 {
-    // Configure the input and output buffers
-
+        // Configure the input and output buffers
+ 
 	// NHWC (Batch, Height, Width, Channels): This is the most common format for images
 	// Define input dimensions (batch, height, width, channels) ???
 	//ai_shape_dimension input_shape_data[] = { 1, AI_NETWORK_IN_1_HEIGHT, AI_NETWORK_IN_1_WIDTH, AI_NETWORK_IN_1_CHANNEL };
@@ -891,7 +841,7 @@ ai_i32 pa3_ai_network_inference(ai_i8 *input_data, ai_i8 *output_data)
 
 	// Output buffer initialization
 	ai_buffer ai_output[AI_NETWORK_OUT_NUM] = {
-   {
+        {   
 		.format = AI_NETWORK_OUT_1_FORMAT,
 		.data = AI_HANDLE_PTR(output_data),  	// Assuming output_data points to where the output will be stored
 		.meta_info = NULL,
@@ -920,6 +870,56 @@ ai_i32 pa3_ai_network_inference(ai_i8 *input_data, ai_i8 *output_data)
 }
 
 
+void pa3_run_model_on_test_dataset(void){
+
+	// Loop over all MNIST_TEST_SUBSET_SIZE test samples
+	UART_SendString(&huart3, "\n\nRunning inference...\n");
+	sprintf(buffer, "   MNIST test dataset size: %d \n", MNIST_TEST_SUBSET_SIZE);
+	UART_SendString(&huart3, buffer);
+	for (int i = 0; i < MNIST_TEST_SUBSET_SIZE; i++) {
+	  // Copy the test sample data (uint8) into network input buffer (int8)
+	  for (int j = 0; j < AI_NETWORK_IN_1_SIZE; j++) {
+		  network_input[j] = (ai_i8)(mnist_test[i][j]);
+	  }
+
+	  // Run inference on the current sample
+	  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_SET);
+	  if (pa3_ai_network_inference(network_input, network_output) != 0) {
+		  //printf("Inference failed for sample %d\n", i);
+		  __NOP();
+		  UART_SendString(&huart3, "Error running inference.");
+		  return -1;
+	  }
+	  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_RESET);
+
+	  int8_t max = -127;
+	  int8_t digit = 0;
+	  for(int k = 0; k < AI_NETWORK_OUT_1_SIZE ; k++) {
+		  if (network_output[k] >= max){
+			  max = network_output[k];
+			  digit = k;
+		  }
+	  }
+	  recognized_digits[i] = digit;
+	  sprintf(buffer, "   Data %d: Recognized character: %d Label: %d", i, digit, mnist_test_labels[i]);
+	  UART_SendString(&huart3, buffer);
+	  if (digit != mnist_test_labels[i]){
+		  UART_SendString(&huart3, " *** Error \n");
+	  }
+	  else UART_SendString(&huart3, "\n");
+	  HAL_Delay(20);
+	}
+
+	for(int i = 0; i < MNIST_TEST_SUBSET_SIZE; i++) {
+	  if (recognized_digits[i] == mnist_test_labels[i]) {
+		  success ++;
+	  }
+	}
+	accuracy = (float)success / (float)MNIST_TEST_SUBSET_SIZE;
+	//printf("Accuracy = %f", accuracy);
+	sprintf(buffer, "\n\nNetwork accuracy: %f", accuracy);
+	UART_SendString(&huart3, buffer);
+}
 
 
 void UART_SendString(UART_HandleTypeDef* huart, const char *str) {
