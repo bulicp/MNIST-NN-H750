@@ -40,7 +40,7 @@ import onnx
 class SimpleNN(nn.Module):
     def __init__(self):
         super(SimpleNN, self).__init__()
-        self.fc1 = nn.Linear(28 * 28, 128)  # Input layer to hidden layer
+        self.fc1 = nn.Linear(28 * 28, 128)   # Input layer to hidden layer
         self.fc2 = nn.Linear(128, 64)        # Hidden layer
         self.fc3 = nn.Linear(64, 10)         # Hidden layer to output layer
 
