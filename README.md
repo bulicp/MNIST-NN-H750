@@ -189,8 +189,6 @@ The neural network implemented for the MNIST dataset is a simple feedforward net
 
 After training and testing the model, we export it to the ONNX format.
 
-### 5.1 Export the Model
-
 ```python
 def export_model_to_onnx(model, file_name="mnist_model.onnx"):
     # Create a dummy input tensor with the same shape as your training data
