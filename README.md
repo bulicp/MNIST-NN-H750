@@ -254,8 +254,8 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
    - Choose a workspace directory where you want to manage your STM32 projects, or select an existing workspace. I reccomend creating a new directory and using it as a workspace.
 
 3. **Import the Project:**
-   - copy the directory downloaded (named STM32H750B-DK) from ST Edge AI Developer Cloud and copy it into a newly created workspace directory.
-   - Go to the **File** menu and select **Import0open Projects from File system**.
+   - Copy the directory downloaded (named STM32H750B-DK) from ST Edge AI Developer Cloud and copy it into a newly created workspace directory.
+   - Go to the **File** menu and select **Import Projects from File system**.
    - In the Import window, click **Directory** and locate and select STM32H750B-DK, then click **Next** or **Finish**
 
 4. **Build the Project:**
@@ -263,9 +263,9 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
 
 ---
 
-## 9. Programming and Debugging an STM32H750 Project with STM32CubeProgrammer and STM32CubeIDE
+## 8. Programming and Debugging an STM32H750 Project with STM32CubeProgrammer and STM32CubeIDE
 
-### 9.1. Flashing the Firmware using STM32CubeProgrammer with an External Loader
+### 8.1. Flashing the Firmware using STM32CubeProgrammer with an External Loader
 
 #### Step 1: Connect and Set Up the STM32H750 Board
 - **Connect** your STM32H750 board to your computer via USB or another interface that supports flashing (e.g., ST-Link).
@@ -288,9 +288,8 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
 2. Ensure the **Memory Type** (Internal or External) is set based on where you want the firmware loaded.
 3. Click **Download** to program the firmware into the selected memory.
 
----
 
-### 9.2. Configuring STM32CubeIDE to Debug Without Flashing
+### 8.2. Configuring STM32CubeIDE to Debug Without Flashing
 
 In some cases, you may want to start a debug session without re-flashing the firmware each time. Here’s how to configure STM32CubeIDE to allow this.
 
@@ -308,17 +307,14 @@ In some cases, you may want to start a debug session without re-flashing the fir
 
 ---
 
-### 9.3. Starting the Debug Session Without Flashing
+### 8.3. Starting the Debug Session Without Flashing
 
 1. Once the configuration is saved, initiate the debug session by selecting the debug icon (the green bug icon) in STM32CubeIDE.
 2. Use breakpoints, step-throughs, and other debug tools as usual to inspect the program’s execution.
 
 
 
-
-
-
-## 10. **Generating a Quantized MNIST Test Subset for STM32 Testing**
+## 9. **Generating a Quantized MNIST Test Subset for STM32 Testing**
 
 
 Testing a neural network on an STM32H750 requires efficient, quantized data to match the 8-bit format of the deployed model. This script:
@@ -420,7 +416,7 @@ print("Header file 'mnist_test_subset.h' has been generated.")
 
 
 
-## 11. Initializing and Running a Neural Network on STM32H750 with Cube.AI
+## 10. Initializing and Running a Neural Network on STM32H750 with Cube.AI
 
 Now, we’ll walk through setting up and running a neural network on the STM32H750 using STM32Cube.AI. Below are the necessary variables you’ll need to declare in `main.c` and explanations of each.
 
