@@ -331,14 +331,14 @@ AI_NETWORK_IN_1_SIZE = 784
 AI_NETWORK_IN_1_SIZE_BYTES = 784
 ```
 
-### Step 2: Load and Transform the MNIST Test Dataset
+#### Step 2: Load and Transform the MNIST Test Dataset
 The script loads the MNIST test dataset and applies normalization to match the input requirements of the neural network model.
 ```python
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0,), (1,))])
 mnist_test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 ```
 
-### Step 3: Select a Random Subset of Images
+#### Step 3: Select a Random Subset of Images
 This step randomly selects 100 images from the MNIST test dataset, flattens each image from 28x28 to a 1D array, and stores them along with their labels.
 ```python
 indices = np.random.choice(len(mnist_test_dataset), NUM_SAMPLES, replace=False)
@@ -352,14 +352,14 @@ for idx in indices:
 
 ```
 
-### Step 4: Quantize the Images to Signed 8-bit Format
+#### Step 4: Quantize the Images to Signed 8-bit Format
 To fit the data into the model's 8-bit format, each image is converted to a range of -128 to 127.
 ```python
 quantized_images = np.clip((np.array(images) * 255 - 128).astype(np.int8), -128, 127)
 ```
 
 
-### Step 5: Generate the C Header File Content
+#### Step 5: Generate the C Header File Content
 The script creates a header file (mnist_test_subset.h) and writes the quantized images and labels in a C-compatible format, which makes it easy to import into an embedded application for testing. Finally, the script writes the generated header content to mnist_test_subset.h, making the test data ready for use in an STM32 project.
 
 ```python
