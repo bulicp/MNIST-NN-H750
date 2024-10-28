@@ -208,7 +208,9 @@ def export_model_to_onnx(model, file_name="mnist_model.onnx"):
 export_model_to_onnx(model)
 ```
 
-## 6. Importing ONNX into ST Edge AI Developer Cloud
+## 6. Importing ONNX into ST Edge AI Developer Cloud and Creating the STM32 Project
+
+### 6.1. Import ONNX
 
 1. Log in to your ST Edge AI Developer Cloud account (https://stm32ai-cs.st.com/home).
 2. Navigate to the **Your model library** section.
@@ -216,18 +218,18 @@ export_model_to_onnx(model)
 4. Click **Start**.
 5. The new page appeass (Select a platform). Select **STM32 MCUs**.
 
-## 6. Quantizing the Model
+### 6.2. Quantizing the Model
 
 1. After importing, select the model from your model list.
 2. Click on **Quantization** to begin the process.
 3. Choose the desired quantization parameters (e.g., INT8).
 4. Click **Quantize** and wait for the process to complete.
 
-## 7. Model benchmarking
+### 6.3. Model benchmarking
 1. Select the board and click **Start Benchmark**
 2. Once the benchmark is finished, click on **...** and select **Generate code for this board**
 
-## 7. Creating the Project for STM32H750
+### 6.4. Creating the Project for STM32H750
 
 1. Now the **Generate your project** section appears.
 2. On the bottom left locate **CPU/Series** and select **ARM Cortex-M7**
@@ -239,7 +241,7 @@ export_model_to_onnx(model)
 ---
 
 
-## 8. Opening a Generated STM32CubeIDE Project in STM32CubeIDE
+## 7. Opening a Generated STM32CubeIDE Project in STM32CubeIDE
 
 Once you've generated your project in the ST Edge AI Developer Cloud or from any other source, you can easily open it in STM32CubeIDE to begin development or testing. Follow the steps below:
 
