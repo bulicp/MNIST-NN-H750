@@ -1,7 +1,6 @@
 # A step-by-Step Guide to Implementing a Neural Network for MNIST on STM32H750
 
-This guide will walk you through the process of implementing, training, testing, and deploying a simple neural network for the MNIST dataset on the STM32H750 board. Here is a video of the working network: 
-[MNIST NN on STM32H750](https://youtu.be/fTuEm3o_KBk)
+This guide will walk you through the process of implementing, training, testing, and deploying a simple neural network for the MNIST dataset on the STM32H750 board. This guide is accompanied by a detailed step-by-step video tutorial, available on [YouTube](https://youtu.be/k18p-l8D6SA), which demonstrates each phase of implementing, training, testing, and deploying and debugging the neural network on the STM32H750 board. 
 
 
 ## Prerequisites
@@ -40,7 +39,7 @@ import onnx
 class SimpleNN(nn.Module):
     def __init__(self):
         super(SimpleNN, self).__init__()
-        self.fc1 = nn.Linear(28 * 28, 128)   # Input layer to hidden layer
+        self.fc1 = nn.Linear(28 * 28, 128)  # Input layer to hidden layer
         self.fc2 = nn.Linear(128, 64)        # Hidden layer
         self.fc3 = nn.Linear(64, 10)         # Hidden layer to output layer
 
@@ -189,8 +188,6 @@ The neural network implemented for the MNIST dataset is a simple feedforward net
 
 After training and testing the model, we export it to the ONNX format.
 
-### 5.1 Export the Model
-
 ```python
 def export_model_to_onnx(model, file_name="mnist_model.onnx"):
     # Create a dummy input tensor with the same shape as your training data
@@ -208,9 +205,7 @@ def export_model_to_onnx(model, file_name="mnist_model.onnx"):
 export_model_to_onnx(model)
 ```
 
-## 6. Importing ONNX into ST Edge AI Developer Cloud and Creating the STM32 Project
-
-### 6.1. Import ONNX
+## 6. Importing ONNX into ST Edge AI Developer Cloud
 
 1. Log in to your ST Edge AI Developer Cloud account (https://stm32ai-cs.st.com/home).
 2. Navigate to the **Your model library** section.
@@ -218,18 +213,18 @@ export_model_to_onnx(model)
 4. Click **Start**.
 5. The new page appeass (Select a platform). Select **STM32 MCUs**.
 
-### 6.2. Quantizing the Model
+### 6.1. Quantizing the Model
 
 1. After importing, select the model from your model list.
 2. Click on **Quantization** to begin the process.
 3. Choose the desired quantization parameters (e.g., INT8).
 4. Click **Quantize** and wait for the process to complete.
 
-### 6.3. Model benchmarking
+### 6.2. Model benchmarking
 1. Select the board and click **Start Benchmark**
 2. Once the benchmark is finished, click on **...** and select **Generate code for this board**
 
-### 6.4. Creating the Project for STM32H750
+### 6.3. Creating the Project for STM32H750
 
 1. Now the **Generate your project** section appears.
 2. On the bottom left locate **CPU/Series** and select **ARM Cortex-M7**
@@ -237,8 +232,6 @@ export_model_to_onnx(model)
 4. At the bottom of the page, click **Download** under **Download STM32CubeIDE Project**
 5. a zip will be downloaded containing the STM32H750B-DK directory with sources.
 
-
----
 
 
 ## 7. Opening a Generated STM32CubeIDE Project in STM32CubeIDE
@@ -254,8 +247,8 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
    - Choose a workspace directory where you want to manage your STM32 projects, or select an existing workspace. I reccomend creating a new directory and using it as a workspace.
 
 3. **Import the Project:**
-   - Copy the directory downloaded (named STM32H750B-DK) from ST Edge AI Developer Cloud and copy it into a newly created workspace directory.
-   - Go to the **File** menu and select **Import Projects from File system**.
+   - copy the directory downloaded (named STM32H750B-DK) from ST Edge AI Developer Cloud and copy it into a newly created workspace directory.
+   - Go to the **File** menu and select **Import0open Projects from File system**.
    - In the Import window, click **Directory** and locate and select STM32H750B-DK, then click **Next** or **Finish**
 
 4. **Build the Project:**
@@ -288,7 +281,6 @@ Once you've generated your project in the ST Edge AI Developer Cloud or from any
 2. Ensure the **Memory Type** (Internal or External) is set based on where you want the firmware loaded.
 3. Click **Download** to program the firmware into the selected memory.
 
-
 ### 8.2. Configuring STM32CubeIDE to Debug Without Flashing
 
 In some cases, you may want to start a debug session without re-flashing the firmware each time. Here’s how to configure STM32CubeIDE to allow this.
@@ -305,13 +297,10 @@ In some cases, you may want to start a debug session without re-flashing the fir
 #### Step 3: Apply the Configuration
 - Click **Apply** to save your changes, and then click **Close**.
 
----
-
 ### 8.3. Starting the Debug Session Without Flashing
 
 1. Once the configuration is saved, initiate the debug session by selecting the debug icon (the green bug icon) in STM32CubeIDE.
 2. Use breakpoints, step-throughs, and other debug tools as usual to inspect the program’s execution.
-
 
 
 ## 9. **Generating a Quantized MNIST Test Subset for STM32 Testing**
@@ -342,14 +331,14 @@ AI_NETWORK_IN_1_SIZE = 784
 AI_NETWORK_IN_1_SIZE_BYTES = 784
 ```
 
-#### Step 2: Load and Transform the MNIST Test Dataset
+### Step 2: Load and Transform the MNIST Test Dataset
 The script loads the MNIST test dataset and applies normalization to match the input requirements of the neural network model.
 ```python
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0,), (1,))])
 mnist_test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 ```
 
-#### Step 3: Select a Random Subset of Images
+### Step 3: Select a Random Subset of Images
 This step randomly selects 100 images from the MNIST test dataset, flattens each image from 28x28 to a 1D array, and stores them along with their labels.
 ```python
 indices = np.random.choice(len(mnist_test_dataset), NUM_SAMPLES, replace=False)
@@ -363,14 +352,14 @@ for idx in indices:
 
 ```
 
-#### Step 4: Quantize the Images to Signed 8-bit Format
+### Step 4: Quantize the Images to Signed 8-bit Format
 To fit the data into the model's 8-bit format, each image is converted to a range of -128 to 127.
 ```python
 quantized_images = np.clip((np.array(images) * 255 - 128).astype(np.int8), -128, 127)
 ```
 
 
-#### Step 5: Generate the C Header File Content
+### Step 5: Generate the C Header File Content
 The script creates a header file (mnist_test_subset.h) and writes the quantized images and labels in a C-compatible format, which makes it easy to import into an embedded application for testing. Finally, the script writes the generated header content to mnist_test_subset.h, making the test data ready for use in an STM32 project.
 
 ```python
@@ -413,9 +402,6 @@ with open('mnist_test_subset.h', 'w') as f:
 print("Header file 'mnist_test_subset.h' has been generated.")
 ```
 
-
-
-
 ## 10. Initializing and Running a Neural Network on STM32H750 with Cube.AI
 
 Now, we’ll walk through setting up and running a neural network on the STM32H750 using STM32Cube.AI. Below are the necessary variables you’ll need to declare in `main.c` and explanations of each.
@@ -446,7 +432,7 @@ uint8_t recognized_digits[MNIST_TEST_SUBSET_SIZE] = {0};
 
 
 
-### Function: `pa3_ai_network_init`
+### 10.1. Function: `pa3_ai_network_init`
 
 The `pa3_ai_network_init` function is responsible for creating and initializing the neural network instance for the STM32H750. It performs the following key tasks:
 
@@ -486,7 +472,7 @@ The `ai_network_params` structure is populated with:
 - Activations: Set using the macro `AI_NETWORK_DATA_ACTIVATIONS(activations)`.
 The function `calls ai_network_init` with the network instance and the prepared parameters.
 
-### Function: `pa3_ai_network_inference()`
+### 10.2. Function: `pa3_ai_network_inference()`
 
 The `pa3_ai_network_inference` function is designed to perform inference using a neural network on the STM32H750. It takes input data, processes it through the network, and outputs the results.
 
@@ -595,8 +581,6 @@ The shape of the input buffer is defined using another structure that holds `siz
   - `.data`: This is a pointer to `inputput_shape_data`, which holds the actual dimensions of the output. In this case, it defines the shape as an array representing the input configuration.
 
 
-
-
 Here's a detailed explanation of the code snippet that initializes the output buffer for a neural network inference on the STM32H750:
 ```c
 ai_shape_dimension output_shape_data[] = { 1, AI_NETWORK_OUT_1_SIZE, 1, 1};
@@ -641,7 +625,7 @@ This function call runs the network using the initialized input and output buffe
 
 
 
-### main() function
+### 10.3. main() function
 
 In the `main()` function we create and initialize the network and run the inference over the whole input dataset. The following code presents only the part of the `main()` functin that contains the user code only (not the MX generated code):
 
@@ -700,13 +684,11 @@ int main(void)
 	accuracy = (float)success / (float)MNIST_TEST_SUBSET_SIZE;
 
     // . . .
-
-
 ```
-
 
 ## Conclusion
 
-I hope this guide will help you implement, train, test, and deploy a neural network for the MNIST dataset (or some other network) on the STM32H750 board. 
+I hope this guide helps you implement, train, test, and deploy a neural network for the MNIST dataset (or other models) on the STM32H750 board. If you have any questions, encounter issues, or find any steps unclear, please don’t hesitate to reach out. And if you find this project useful, feel free to share it with others!
 
+pa3cio@fri.uni-lj.si
 
